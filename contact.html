@@ -579,12 +579,17 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body),
         });
-        if (!res.ok) throw new Error('send failed');
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          console.error('Contact form error:', data);
+          throw new Error(data.details?.message || data.error || 'send failed');
+        }
         this.style.display = 'none';
         const success = document.getElementById('form-success');
         success.classList.add('visible');
         gsap.from(success, { opacity: 0, y: 20, duration: 0.6 });
-      } catch {
+      } catch (err) {
+        console.error('Submit error:', err.message);
         btn.textContent = 'Send Inquiry';
         btn.disabled = false;
         btn.style.background = 'rgba(196,80,80,0.85)';
