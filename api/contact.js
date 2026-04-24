@@ -60,7 +60,7 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Mythos Prints <mythosform@silueuntue.resend.app>',
+        from: 'Mythos Prints <onboarding@resend.dev>',
         to: ['mythosprintshop@gmail.com'],
         reply_to: email,
         subject: `New inquiry — ${name}${business ? ` · ${business}` : ''}`,
