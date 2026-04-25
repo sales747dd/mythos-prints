@@ -316,6 +316,23 @@
       .footer-bottom { flex-direction: column; gap: 0.5rem; }
     }
   </style>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '3937455279892855');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=3937455279892855&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -587,6 +604,7 @@
         this.style.display = 'none';
         const success = document.getElementById('form-success');
         success.classList.add('visible');
+        fbq('track', 'Lead');
         gsap.from(success, { opacity: 0, y: 20, duration: 0.6 });
       } catch (err) {
         console.error('Submit error:', err.message);
@@ -605,6 +623,10 @@
       document.getElementById(id).addEventListener('input', function() {
         this.style.borderColor = '';
       });
+    });
+
+    document.querySelectorAll('a[href^="mailto:"]').forEach(function(a) {
+      a.addEventListener('click', function() { fbq('track', 'Contact'); });
     });
   </script>
 </body>

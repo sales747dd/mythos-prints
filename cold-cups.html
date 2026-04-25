@@ -511,6 +511,24 @@
       50% { transform: translateY(-13px); }
     }
   </style>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '3937455279892855');
+  fbq('track', 'PageView');
+  fbq('track', 'ViewContent', { content_name: 'Custom Cold Cups', content_category: 'Product' });
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=3937455279892855&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -890,6 +908,10 @@
     });
 
     gsap.from('.cta-section', { scrollTrigger: { trigger: '.cta-section', start: 'top 78%' }, opacity: 0, y: 30, duration: 0.9 });
+
+    document.querySelectorAll('a[href^="mailto:"]').forEach(function(a) {
+      a.addEventListener('click', function() { fbq('track', 'Contact'); });
+    });
   </script>
 </body>
 </html>
